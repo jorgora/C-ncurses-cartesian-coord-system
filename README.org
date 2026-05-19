@@ -1,0 +1,110 @@
+#+title: Readme
+
+* C - cartesian coordinate system.
+
+They say programming is about using the right tool for the right job so I made a cartesian coordinate system using ncurses and C.
+
+A program that can display math functions such as sin(x) or x^2 would be both useful for programming and good for a portfolio.
+Ncurses has a resolution of roughly 100 * 200 characters full screen on my terminal so it's not the most precise toold for the job, but it's retro.
+
+This program was intended mostly for art. An ncurses sine wave is funny. It draw on points of (x,y) coords,  or draw rects in order to make retro art.
+
+* TASKS
+** DONE Make base point that's cartesian coords, not top left corner coords
+** DONE Make function that draws an array of points (rect)
+** DONE Make function that takes a function pointer (like sin(x)) and prints it
+*** DONE make a function that takes a pointer as an argument and store in notes
+** TODO update cross to be more vesitle. brainstorm
+it doesn't use the point system currently which is the whole (point) of the program, it makes it easy
+
+the numbering dot thing could be a useful function
+*** TODO make numbered line function using point
+*** TODO make cross function using point  
+** TODO make circle function and ellipsis function
+What's the equation for a circle? as in to graph one, not find the area. Off the top of your head?
+I have no internet and no idea. Gotta write that one down to look up.
+
+and good luck with knowing the ellipsis function if you don't know circle. I know triangle, I'll make some triangles.
+** TODO right angle triangle
+* THOUGHTS
+** DONE think about point
+It's to be an abstraction over everything because ncurses is usually not cartesian, it's top-down, left-right.
+
+this way I can have a cartesian base, but I'm not sure if it's completely right or if it's a house of cards. Inspect it.
+
+It made making function way way easier. I think it will make numbered-line and cross way easier too. I think it's
+a good idea to have a cartesian point struct as a basis so I don't have to work out how to make every other
+object in my program cartesian, it can just use the already cartesian point system. For now at least, I'm marking
+this done and moving on using it. I'll update if it's a footgun that goes horribly wrong and it restricts me later.
+** DONE think about the point function
+This seems handy because it creates the pointer, prints it to screen and destroys it in one function
+no memory leaks?
+
+but am I doing a whacky amount of mallocs? Is there a whacky amount of mallocs? Is it an issue?
+I could batch mallocs together, and right now, it doesn't return the pointer, it could return the Point* point which is evidently what I'm going for.
+#+begin_src c
+// create, refresh then destroy the point, leaving it drawn on the screen
+void point(int x, int y, int colour, const char* str)
+{
+    Point* point = point_create(x, y, colour, str);
+    point_refresh(point);
+    point_destroy(point);
+}
+#+end_src
+
+
+#+begin_src c
+// create routine for memory
+Point* point_create(int x, int y, int colour, const char* str)
+{
+    Point* point = malloc(sizeof(Point));
+    point->x = x;
+    point->y = y;
+    point->colour = colour;
+    point->str = str;
+    return point;
+}
+#+end_src
+
+I intend to use this everywhere. The rect function will be code :  for(i) { for(j)  { point(i, j)}}
+
+I worry this might be slow but I'll worry about bottlenecks later
+
+maybe it's better to have one grid of points and to manipulate it
+
+if something goes wrong with the points way down the line, it's going to be a problem.
+
+I'm thinking, their should be a point grid. But it works fine as is, I'll continue on this idea,
+of each header giving a function that creates it's own points. if this ends up the bottleneck I'll change it.
+
+** TODO standards
+*** TODO naming
+#+begin_src c
+//noun verb
+int car_clean(Car* car);
+int car_drive(Car* car);
+int car_park(Car* car);
+
+//verb noun
+int park_car(Car* car);
+int drive_car(Car* car);
+int clean_car(Car* car);
+#+end_src
+
+C doesn't have dot notation like car.drive(). There's no actual coupling of structs and methods. Naming in C is very important. You make more decisions about the program's overall naming schema than in other languages that other niceties. You must be wise and kind to your future self when naming everything if you wish to make it scalable.
+
+Noun-Verb notation couples the methods to their corresponding function better. This essentially mimics dot notation like car.drive()
+
+** TODO make a (if true for x, if true for y)
+* BUGS
+** DONE functions start at 0, 0, no negatives (maybe related to other bug)
+try to rethink the func function
+
+SOLVED: I was using size_t which could go negative
+** TODO horizontal reflection of functions doesn't work
+* function transformations
+I have them coded, but I want it to modify the function's func ptr.
+
+I don't know how to return functions with c with no internet lol (or if it's even possible)
+or at least it's equivalent is possible. I could take a pointer to a function in and then modify the pointer,
+but I'll see if there's an elegant way once I have internet
