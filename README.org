@@ -1,25 +1,9 @@
 #+title: Readme
 
 * C - cartesian coordinate system.
-
 They say programming is about using the right tool for the right job so I made a cartesian coordinate system using ncurses and C.
 
 A program that can display math functions such as sin(x) or x^2 would be both useful for programming and good for a portfolio.
 Ncurses has a resolution of roughly 100 * 200 characters full screen on my terminal so it's not the most precise toold for the job, but it's retro.
 
 This program was intended mostly for art. An ncurses sine wave is funny. It draw on points of (x,y) coords,  or draw rects in order to make retro art.
-* TODO list
-** TODO update cross to be more vesitle. brainstorm
-it doesn't use the point system currently which is the whole (point) of the program, it makes it easy
-
-the numbering dot thing could be a useful function
-*** TODO make numbered line function using point
-*** TODO make cross function using point  
-** TODO make circle function and ellipsis function
-What's the equation for a circle? as in to graph one, not find the area. Off the top of your head?
-I have no internet and no idea. Gotta write that one down to look up.
-
-and good luck with knowing the ellipsis function if you don't know circle. I know triangle, I'll make some triangles.
-** TODO right angle triangle
-** TODO make a (if true for x, if true for y)
-** TODO horizontal reflection of functions doesn't work
