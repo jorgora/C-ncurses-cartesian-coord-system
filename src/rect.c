@@ -4,7 +4,7 @@
 #include "../headers/rect.h"
 #include "../headers/point.h"
 
-//create routine in memory
+// create routine in memory
 Rect* rect_create(int x, int y, int width, int height, int colour, const char* str)
 {
     Rect* rect = malloc(sizeof(Rect));
@@ -17,7 +17,7 @@ Rect* rect_create(int x, int y, int width, int height, int colour, const char* s
     return rect;
 }
 
-//destroy routine in memory
+// destroy routine in memory
 void rect_destroy(Rect* rect)
 {
     free(rect);    
@@ -40,6 +40,19 @@ void rect_refresh(Rect* rect)
 
     attroff(COLOR_PAIR(rect->colour));
 }
+
+// set colour of rect 
+void rect_set_colour(Rect* rect, int colour)
+{
+    rect->colour = colour;
+}
+
+// set string of rect 
+void rect_set_str(Rect* rect, const char* str)
+{
+    rect->str = str;
+}
+
 
 // create, refresh then destroy, drawn on screen
 void rect(int x, int y, int width, int height, int colour, const char* str)

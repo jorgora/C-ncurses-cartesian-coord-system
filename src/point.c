@@ -3,7 +3,7 @@
 
 #include "../headers/point.h"
 
-// create routine for memory
+// create routine in memory
 Point* point_create(int x, int y, int colour, const char* str)
 {
     Point* point = malloc(sizeof(Point));
@@ -15,6 +15,7 @@ Point* point_create(int x, int y, int colour, const char* str)
 }
 
 // create routine for memory
+// I made this for number line, which doesn't work
 Point* point_create_int(int x, int y, int colour, int str)
 {
     Point* point = malloc(sizeof(Point));
@@ -25,8 +26,7 @@ Point* point_create_int(int x, int y, int colour, int str)
     return point;
 }
 
-
-// destroy rountine for memory
+// destroy routine for memory
 void point_destroy(Point* point)
 {
     free(point); 
@@ -49,16 +49,16 @@ void point_set(Point* point, int x, int y)
 // draw on ncurses screen
 void point_refresh(Point* point)
 {
-    //get maximums from screen size (get to get centre point by /2) (it updates the vars)
+    // get maximums from screen size
     size_t max_y = 0;
     size_t max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
-    
+
+    // draw point
     attron(COLOR_PAIR(point->colour));
     mvprintw((max_y / 2) - point->y, (max_x / 2) + (point->x * 2), "%s", point->str);
     attroff(COLOR_PAIR(point->colour));
 }
-
 
 // set colour of point
 void point_set_colour(Point* point, int colour)

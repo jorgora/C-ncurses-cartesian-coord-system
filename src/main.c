@@ -72,11 +72,11 @@ void draw_face()
 
 int main(void)
 {
-    //init screen (start ncurses)
-    //all ncurses code between initscr() and endwin()
+    // init screen (start ncurses)
+    // all ncurses code between initscr() and endwin()
     initscr();
 
-    //handle no colour error
+    // handle no colour error
     if(!has_colors())
     {
         printw("Terminal does not support colours");

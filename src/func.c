@@ -5,6 +5,7 @@
 #include "../headers/func.h"
 #include "../headers/point.h"
 
+// create routine in memory
 Func* func_create(double (*func) (double x), int colour, const char* str)
 {
     Func* function = malloc(sizeof(Func));
@@ -13,15 +14,16 @@ Func* func_create(double (*func) (double x), int colour, const char* str)
     function->str = str;
 }
 
+// destroy routine in memory
 void func_destroy(Func* func)
 {
     free(func);
 }
 
-
+// draw on ncurse screen
 void func_refresh(Func* func)
 {
-    //get maximums from screen size (get to get centre point by /2) (it updates the vars)
+    // get maximums from screen size
     int max_y = 0;
     int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
@@ -31,9 +33,21 @@ void func_refresh(Func* func)
     { 
         point(i, floor(func->func(i)), func->colour, func->str);   
     }
-    
 }
 
+// set colour of func
+void func_set_colour(Func* func, int colour)
+{
+    func->colour = colour;
+}
+
+// set string of func
+void func_set_str(Func* func, const char* str)
+{
+    func->str = str;
+}
+
+// create, refresh then destroy the point, leaving it drawn on the screen
 void func(double (*func) (double x), int colour, const char* str)
 {
     Func* function = func_create(func, colour, str);
