@@ -129,7 +129,7 @@ int main(void)
     // wait for keypress - returns int value of key
     getch();
     
-    //deallocate memory  (end ncurses)
+    // deallocate memory  (end ncurses)
     endwin();
 
     // exit program
