@@ -1,0 +1,13 @@
+#+title: Todo List
+
+This only really works when open in emacs (or an editor that supports org mode). Github doesn't even show the TODO and DONE
+tags.
+
+* TODO cross is outdated code, make it use base point.h struct
+TODO
+* TODO complete getters and setters
+TODO
+* TODO more housekeeping before adding any new features
+TODO
+Some of this code sucks or is outdated. Some comments are not generalised
+* TODO I'm ignoring 8 compiler warnings, find out what they are

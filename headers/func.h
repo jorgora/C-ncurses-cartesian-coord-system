@@ -18,10 +18,13 @@ void func_destroy(Func* func);
 // draw on ncurses screen
 void func_refresh(Func* func);
 
-// set colour of func
+// set function pointer of func to be printed
+void func_set_func(Func* func, double (*function) (double x));
+
+// set colour to be printed to screen
 void func_set_colour(Func* func, int colour);
 
-// set string of func
+// set string to be printed to strin
 void func_set_str(Func* func, const char* str);
 
 // create, refresh then destroy the point, leaving it drawn on the screen

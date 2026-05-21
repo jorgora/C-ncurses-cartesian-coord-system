@@ -35,13 +35,19 @@ void func_refresh(Func* func)
     }
 }
 
-// set colour of func
+// set function pointer of func to be printed
+void func_set_func(Func* func, double (*function) (double x))
+{
+    func->func = function;
+}
+
+// set colour to be printed to screen
 void func_set_colour(Func* func, int colour)
 {
     func->colour = colour;
 }
 
-// set string of func
+// set string to be printed to screen
 void func_set_str(Func* func, const char* str)
 {
     func->str = str;
