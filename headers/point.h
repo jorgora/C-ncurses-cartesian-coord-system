@@ -1,6 +1,7 @@
 #ifndef POINT_H_
 #define POINT_H_
 
+// struct definition
 typedef struct
 {
     int x;
@@ -21,16 +22,16 @@ void point_move(Point* point, int x, int y);
 // move to coordinate (x, y)
 void point_set(Point* point, int x, int y);
 
-// set string that will be print
+// set string to be printed
 void point_set_str(Point* point, const char* str);
 
-// set colour of point
+// set colour to be printed
 void point_set_colour(Point* point, int colour);
 
 // draw to ncurses screen
 void point_refresh(Point* point);
 
-// create, refresh then destroy, drawn on screen
+// create, refresh then destroy (drawn on screen)
 void point(int x, int y, int colour, const char* str);
 
 #endif // POINT_H_

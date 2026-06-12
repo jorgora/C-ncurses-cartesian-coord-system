@@ -4,7 +4,6 @@
 
 #include "../headers/point.h"
 
-
 void cross(int x, int y)
 {
     #define CROSS_HORIZ_STR "#"
