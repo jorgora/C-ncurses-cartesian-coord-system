@@ -3,7 +3,7 @@
 
 #include "../headers/point.h"
 
-// create routine in memory
+// create routine for memory
 Point* point_create(int x, int y, int colour, const char* str)
 {
     Point* point = malloc(sizeof(Point));
@@ -15,7 +15,8 @@ Point* point_create(int x, int y, int colour, const char* str)
 }
 
 // create routine for memory
-// I made this for number line, which doesn't work
+// I made this for number line, which isn't work yet
+// review.
 Point* point_create_int(int x, int y, int colour, int str)
 {
     Point* point = malloc(sizeof(Point));
@@ -60,19 +61,19 @@ void point_refresh(Point* point)
     attroff(COLOR_PAIR(point->colour));
 }
 
-// set colour of point
+// set colour to be printed
 void point_set_colour(Point* point, int colour)
 {
     point->colour = colour;
 }
 
-// set string of point
+// set string to be printed
 void point_set_str(Point* point, const char* str)
 {
     point->str = str;
 }
 
-// create, refresh then destroy the point, leaving it drawn on the screen
+// create, refresh then destroy (drawn on the screen)
 void point(int x, int y, int colour, const char* str)
 {
     Point* point = point_create(x, y, colour, str);
