@@ -7,16 +7,18 @@
 Point* point_create(int x, int y, int colour, const char* str)
 {
     Point* point = malloc(sizeof(Point));
+
     point->x = x;
     point->y = y;
     point->colour = colour;
     point->str = str;
+
     return point;
 }
 
 // create routine for memory
 // I made this for number line, which isn't work yet
-// review.
+// review. I need to be able to print numbers
 Point* point_create_int(int x, int y, int colour, int str)
 {
     Point* point = malloc(sizeof(Point));

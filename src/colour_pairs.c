@@ -1,10 +1,10 @@
 #include <ncurses.h>
 
+// set up ncurses colour pairs
 void colour_pairs_init()
 {
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
 
-    
     init_pair(2, COLOR_RED, COLOR_BLACK);
     init_pair(3, COLOR_RED, COLOR_WHITE);
     init_pair(4, COLOR_WHITE, COLOR_RED);
@@ -34,7 +34,6 @@ void colour_pairs_init()
     init_pair(23, COLOR_CYAN, COLOR_WHITE);
     init_pair(24, COLOR_WHITE, COLOR_CYAN);
     init_pair(25, COLOR_BLACK, COLOR_CYAN);
-
 
     init_pair(26, COLOR_BLACK, COLOR_BLACK);
     init_pair(27, COLOR_WHITE, COLOR_WHITE);

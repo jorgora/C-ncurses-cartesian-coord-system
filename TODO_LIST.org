@@ -12,4 +12,8 @@ make it use base point.h struct like rect.c does
 ** TODO generalise comments
 *** DONE point.h
 *** DONE point.c
+*** DONE rect.h
+*** DONE rect.c
+*** DONE colour_pairs.h
+*** DONE colour_pairs.c
 ** TODO I'm ignoring 8 compiler warnings, find out what they are

@@ -1,6 +1,7 @@
 #ifndef RECT_H_
 #define RECT_H_
 
+// struct definition
 typedef struct
 {
     int x;
@@ -20,15 +21,13 @@ void rect_destroy(Rect* rect);
 // draw to ncurses screen
 void rect_refresh(Rect* rect);
 
-// set colour of rect
+// set colour to be printed
 void rect_set_colour(Rect* rect, int colour);
 
-// set string of rect
+// set string to be printed
 void rect_set_str(Rect* rect, const char* str);
 
-// create, refresh then destroy (draw to screen)
+// create, refresh then destroy (drawn to screen)
 void rect(int x, int y, int width, int height, int colour, const char* str);
 
 #endif // RECT_H_
-
-
