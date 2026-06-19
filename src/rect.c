@@ -1,29 +1,31 @@
 #include <ncurses.h>
 #include <stdlib.h>
 
-#include "../headers/rect.h"
 #include "../headers/point.h"
+#include "../headers/rect.h"
 
-// create routine in memory
+// create routine for memory
 Rect* rect_create(int x, int y, int width, int height, int colour, const char* str)
 {
     Rect* rect = malloc(sizeof(Rect));
+
     rect->x = x;
     rect->y = y;
     rect->width = width;
     rect->height = height;
     rect->colour = colour;
     rect->str = str;
+
     return rect;
 }
 
-// destroy routine in memory
+// destroy routine for memory
 void rect_destroy(Rect* rect)
 {
     free(rect);    
 }
 
-//draw to ncurses screen
+// draw to ncurses screen
 void rect_refresh(Rect* rect)
 {
     attron(COLOR_PAIR(rect->colour));
@@ -41,26 +43,22 @@ void rect_refresh(Rect* rect)
     attroff(COLOR_PAIR(rect->colour));
 }
 
-// set colour of rect 
+// set colour to be printed
 void rect_set_colour(Rect* rect, int colour)
 {
     rect->colour = colour;
 }
 
-// set string of rect 
+// set string to be printed
 void rect_set_str(Rect* rect, const char* str)
 {
     rect->str = str;
 }
 
-
-// create, refresh then destroy, drawn on screen
+// create, refresh then destroy (drawn on screen)
 void rect(int x, int y, int width, int height, int colour, const char* str)
 {
     Rect* rect = rect_create(x, y, width, height, colour, str);
     rect_refresh(rect);
     rect_destroy(rect);
 }
-
-
-

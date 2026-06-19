@@ -3,6 +3,32 @@
 #include <string.h>
 
 #include "../headers/point.h"
+#include "../headers/cross.h"
+
+// create routine for memory
+Cross* cross_create(int x, int y, int colour)
+{
+    Cross* cross = malloc(sizeof(Cross));
+
+    cross->x = x;
+    cross->y = y;
+    cross->colour = colour;
+
+    return cross;
+}
+
+// destroy rountine for memory
+void cross_destroy(Cross* cross)
+{
+    free(cross);
+}
+
+// move to coordinate (x, y)
+void cross_set(Cross* cross, int x, int y)
+{
+    cross->x = x;
+    cross->y = y;
+}
 
 void cross(int x, int y)
 {
@@ -10,12 +36,12 @@ void cross(int x, int y)
     #define CROSS_CENTRE_STR "X"
 
     //get maximums from screen size (it updates the vars)
-   size_t max_y = 0;
-    size_t max_x = 0;
+    int max_y = 0;
+    int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
 
     //VERTICAL
-    for(size_t i = 0; i < max_y; i++)
+    for(size_t i = 0; i < (size_t)max_y; i++)
     {
         int num_to_print = abs((int)-i + (max_y/2));
         

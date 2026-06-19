@@ -9,9 +9,12 @@
 Func* func_create(double (*func) (double x), int colour, const char* str)
 {
     Func* function = malloc(sizeof(Func));
+
     function->func = func;
     function->colour = colour;
     function->str = str;
+
+    return function;
 }
 
 // destroy routine in memory
