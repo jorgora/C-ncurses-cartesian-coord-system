@@ -9,6 +9,8 @@ This only really works when open in emacs (or an editor that supports org mode).
 *** DONE point.c
 ** TODO cross - code is outdated
 make it use base point.h struct like rect.c does
+
+i updated the ross.h file, not the actual code yet. working on it.
 ** TODO generalise comments
 *** DONE point.h
 *** DONE point.c
@@ -17,3 +19,9 @@ make it use base point.h struct like rect.c does
 *** DONE colour_pairs.h
 *** DONE colour_pairs.c
 ** TODO I'm ignoring 8 compiler warnings, find out what they are
+now only 2 compiler warnings.
+
+one is unused max_y var in func.c, this is fine for now.
+
+other is a cast from const char* str to int...this is more novel.
+I will investigate later if it becomes an issue / before v1.0

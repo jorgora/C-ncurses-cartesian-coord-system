@@ -53,8 +53,8 @@ void point_set(Point* point, int x, int y)
 void point_refresh(Point* point)
 {
     // get maximums from screen size
-    size_t max_y = 0;
-    size_t max_x = 0;
+    int max_y = 0;
+    int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
 
     // draw point
