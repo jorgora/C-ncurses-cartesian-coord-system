@@ -26,15 +26,14 @@ void numberline_refresh(Numberline* numberline)
 {
     attron(COLOR_PAIR(numberline->colour));
 
-
-    int counter = 0;
+    //int counter = 0;
     
     for(int i = numberline->x; i < (numberline->x + numberline->length + 1); i++)
     {
         Point* point = point_create(numberline->x + i, numberline->y, numberline->colour, "0-");
         point_refresh(point);
         point_destroy(point);
-        counter++;
+        //counter++;
     }
 
     attroff(COLOR_PAIR(numberline->colour));
@@ -46,6 +45,7 @@ void numberline(int x, int y, int length, int colour)
     Numberline* numberline = numberline_create(x, y, length, colour);
     numberline_refresh(numberline);
     numberline_destroy(numberline);
+    numberline = NULL;
 }
 
 

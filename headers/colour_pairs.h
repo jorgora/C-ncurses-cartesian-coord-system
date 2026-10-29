@@ -2,6 +2,6 @@
 #define COLOUR_PAIRS_H_
 
 // set up ncurses colour pairs
-void colour_pairs_init();
+void colour_pairs_init(void);
 
 #endif // COLOUR_PAIRS_H_

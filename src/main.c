@@ -24,7 +24,7 @@ double big_tan(double x)
  return tan(x/10) * 10; 
 }
 
-void draw_face()
+void draw_face(void)
 {
     // face background
     rect(-40, 1, 26, 20, 20, "GW");

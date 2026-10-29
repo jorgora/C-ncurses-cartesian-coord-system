@@ -62,4 +62,5 @@ void func(double (*func) (double x), int colour, const char* str)
     Func* function = func_create(func, colour, str);
     func_refresh(function);
     func_destroy(function);
+    function = NULL;
 }

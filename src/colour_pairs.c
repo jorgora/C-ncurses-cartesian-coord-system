@@ -1,7 +1,7 @@
 #include <ncurses.h>
 
 // set up ncurses colour pairs
-void colour_pairs_init()
+void colour_pairs_init(void)
 {
     init_pair(1, COLOR_BLACK, COLOR_WHITE);
 

@@ -30,7 +30,7 @@ Point* point_create_int(int x, int y, int colour, int str)
 }
 
 // destroy routine for memory
-void point_destroy(Point* point)
+void point_destroy(Point *point)
 {
     free(point); 
 }
@@ -81,5 +81,6 @@ void point(int x, int y, int colour, const char* str)
     Point* point = point_create(x, y, colour, str);
     point_refresh(point);
     point_destroy(point);
+    point = NULL;
 }
 

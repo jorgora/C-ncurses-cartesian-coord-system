@@ -45,10 +45,11 @@ void circle_refresh(Circle* circle)
 }
 
 //create, refresh then destroy (draw to screen)
-    void circle(int x, int y, int radius, int colour, const char* str)
-    {
+void circle(int x, int y, int radius, int colour, const char* str)
+{
     Circle* circle = circle_create(x, y, radius, colour, str);
     circle_refresh(circle);
     circle_destroy(circle);
+    circle = NULL;
 }
 

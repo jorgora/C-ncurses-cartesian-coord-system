@@ -61,4 +61,5 @@ void rect(int x, int y, int width, int height, int colour, const char* str)
     Rect* rect = rect_create(x, y, width, height, colour, str);
     rect_refresh(rect);
     rect_destroy(rect);
+    rect = NULL;
 }

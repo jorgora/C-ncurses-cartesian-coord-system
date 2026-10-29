@@ -1,19 +1,27 @@
-# Define the compiler to use
+# cartesian-c-ncurses makefile
+
+# compiler
 CC = clang
 
-# Define compiler flags for warnings and other checks
+# compiler flags
 CFLAGS = -Wall -Wextra -pedantic -Wno-gnu-statement-expression
 
-# Define linker flags 
-LDFLAGS = -lncurses -lm
+# linker flags
+LDFLAGS = -lncurses -lm -lcmocka
 
-# List all source files in the project
-SRC = src/main.c src/point.c src/rect.c src/cross.c src/colour_pairs.c src/func.c src/circle.c src/numberline.c
+# header files
+INCLUDES = -Iheaders
 
-# Define object files based on the source files (for each .c file, create a .o file)
+# list all .c files in src
+SRC = $(shell find src -name "*.c")
+
+# testing .c files
+TEST_SRC = $(wildcard tests/*.c)
+
+# for each .c file, create a .o object file
 OBJ = $(SRC:.c=.o)
 
-# Define the name of the final executable
+# name of executable
 EXEC = cartesian-c-ncurses
 
 # Default target to build the project when 'make' is run with no arguments
@@ -24,13 +32,18 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
 
+# Test target: compiles src files (except main) and test files
+test: $(filter-out src/main.o, $(OBJ))
+	$(CC) $(CFLAGS) $(INCLUDES) $(filter-out src/main.o, $(OBJ)) $(TEST_SRC) -o test_runner $(LDFLAGS)
+	./test_runner
+
 # Rule to compile .c files into .o object files
 %.o: %.c
-	$(CC) $(CFLAGS) -Iheaders -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Clean up generated files like object files, executables, binaries
+# clean: remove object and executable files
 clean:
-	rm -f $(OBJ) $(EXEC) 
+	rm -f $(OBJ) $(EXEC) test_runner
 
 # Run the compiled program (after it's built)
 run: $(EXEC)
