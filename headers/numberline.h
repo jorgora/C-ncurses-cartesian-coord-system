@@ -12,9 +12,6 @@ typedef struct
 //create routine in memory
 Numberline* numberline_create(int x, int y, int length, int colour);
 
-//destroy routine in memory
-void numberline_destroy(Numberline* numberline);
-
 //draw to ncurses screen
 void numberline_refresh(Numberline* numberline);
 

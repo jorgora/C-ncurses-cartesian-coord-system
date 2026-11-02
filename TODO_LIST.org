@@ -4,6 +4,14 @@
 This only really works when open in emacs (or an editor that supports org mode). Github doesn't even show the TODO and DONE tags.
 
 * Fri Jun 12 03:18:51 2026 new TODO list
+** TODO create
+*** DONE point
+*** TODO point_create_int
+*** DONE rect
+** TODO destroy
+*** DONE point
+*** TODO point_create_int
+*** DONE rect
 ** TODO complete getters/setters
 *** DONE point.h
 *** DONE point.c
@@ -25,3 +33,6 @@ one is unused max_y var in func.c, this is fine for now.
 
 other is a cast from const char* str to int...this is more novel.
 I will investigate later if it becomes an issue / before v1.0
+* NEW
+* TODO point
+* TODO rect

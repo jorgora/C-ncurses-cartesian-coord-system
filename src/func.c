@@ -17,12 +17,6 @@ Func* func_create(double (*func) (double x), int colour, const char* str)
     return function;
 }
 
-// destroy routine in memory
-void func_destroy(Func* func)
-{
-    free(func);
-}
-
 // draw on ncurse screen
 void func_refresh(Func* func)
 {
@@ -56,11 +50,16 @@ void func_set_str(Func* func, const char* str)
     func->str = str;
 }
 
-// create, refresh then destroy the point, leaving it drawn on the screen
-void func(double (*func) (double x), int colour, const char* str)
+// create, refresh then destroy (drawn on the screen)
+void func(double (*func)(double x), int colour, const char *str)
 {
-    Func* function = func_create(func, colour, str);
+    // create pointer
+    Func *function = func_create(func, colour, str);
+
+    // draw to screen
     func_refresh(function);
-    func_destroy(function);
+
+    // destroy pointer
+    free(function);
     function = NULL;
 }

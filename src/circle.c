@@ -16,11 +16,6 @@ Circle* circle_create(int x, int y, int radius, int colour, const char* str)
     return circle;
 }
 
-//destory routine in memory
-void circle_destroy(Circle* circle)
-{
-    free(circle);
-}
 
 #define M_PI 3.14159
 
@@ -37,7 +32,8 @@ void circle_refresh(Circle* circle)
             {
                 Point* point = point_create(i, j, circle->colour, circle->str);
                 point_refresh(point);
-                point_destroy(point);
+                free(point);
+                point = NULL;
             }
         }
     }
@@ -45,11 +41,16 @@ void circle_refresh(Circle* circle)
 }
 
 //create, refresh then destroy (draw to screen)
-void circle(int x, int y, int radius, int colour, const char* str)
+void circle(int x, int y, int radius, int colour, const char *str)
 {
-    Circle* circle = circle_create(x, y, radius, colour, str);
+    // create pointer
+    Circle *circle = circle_create(x, y, radius, colour, str);
+
+    // draw to screen
     circle_refresh(circle);
-    circle_destroy(circle);
+
+    // destroy pointer
+    free(circle);
     circle = NULL;
 }
 

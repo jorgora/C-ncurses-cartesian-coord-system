@@ -4,10 +4,18 @@
 #include "../headers/point.h"
 
 // create routine for memory
-Point* point_create(int x, int y, int colour, const char* str)
+Point *point_create(int x, int y, int colour, const char *str)
 {
-    Point* point = malloc(sizeof(Point));
+    // create pointer
+    Point *point = malloc(sizeof(Point));
 
+    // handle error
+    if (point == NULL)
+    {
+        return NULL;
+    }
+
+    // assign data
     point->x = x;
     point->y = y;
     point->colour = colour;
@@ -21,37 +29,65 @@ Point* point_create(int x, int y, int colour, const char* str)
 // review. I need to be able to print numbers
 Point* point_create_int(int x, int y, int colour, int str)
 {
-    Point* point = malloc(sizeof(Point));
+    // create pointer
+    Point *point = malloc(sizeof(Point));
+
+    // handle error
+    if (point == NULL)
+    {
+        return NULL;
+    }
+
+    // assign data
     point->x = x;
     point->y = y;
     point->colour = colour;
-    point->str = (const char*) str;
+    point->str = (const char *)str;
+
     return point;
 }
 
-// destroy routine for memory
-void point_destroy(Point *point)
-{
-    free(point); 
-}
-
 // move current coordinate by amount
-void point_move(Point* point, int x, int y)
+int point_move(Point *point, int x, int y)
 {
+    // handle error
+    if (point == NULL)
+    {
+      return EXIT_FAILURE;
+    }
+
+    // assign data
     point->x += x;
     point->y += y;
+
+    return EXIT_SUCCESS;
 }
 
 // move to coordinate (x, y)
-void point_set(Point* point, int x, int y)
+int point_set(Point *point, int x, int y)
 {
+    // handle error
+    if (point == NULL)
+    {
+      return EXIT_FAILURE;
+    }
+
+    // assign data
     point->x = x;
     point->y = y;
+
+    return EXIT_SUCCESS;
 }
 
 // draw on ncurses screen
-void point_refresh(Point* point)
+int point_refresh(Point* point)
 {
+    // handle error
+    if (point == NULL)
+    {
+      return EXIT_FAILURE;
+    }
+
     // get maximums from screen size
     int max_y = 0;
     int max_x = 0;
@@ -61,26 +97,58 @@ void point_refresh(Point* point)
     attron(COLOR_PAIR(point->colour));
     mvprintw((max_y / 2) - point->y, (max_x / 2) + (point->x * 2), "%s", point->str);
     attroff(COLOR_PAIR(point->colour));
+
+    return EXIT_SUCCESS;
 }
 
 // set colour to be printed
-void point_set_colour(Point* point, int colour)
+int point_set_colour(Point* point, int colour)
 {
+    // handle error
+    if (point == NULL)
+    {
+      return EXIT_FAILURE;
+    }
+
+    // assign data
     point->colour = colour;
+
+    return EXIT_SUCCESS;
 }
 
 // set string to be printed
-void point_set_str(Point* point, const char* str)
+int point_set_str(Point* point, const char* str)
 {
+    // handle error
+    if (point == NULL)
+    {
+      return EXIT_FAILURE;
+    }
+
+    // assign data
     point->str = str;
+    return EXIT_SUCCESS;
 }
 
 // create, refresh then destroy (drawn on the screen)
-void point(int x, int y, int colour, const char* str)
+int point(int x, int y, int colour, const char *str)
 {
-    Point* point = point_create(x, y, colour, str);
-    point_refresh(point);
-    point_destroy(point);
-    point = NULL;
-}
+    // create pointer
+    Point *point = point_create(x, y, colour, str);
 
+    // handle error
+    if (point == NULL)
+    {
+        return EXIT_FAILURE;
+    }
+
+    // draw to screen
+    point_refresh(point);
+
+    // free memory
+    free(point);
+    point = NULL;
+
+    // return
+    return EXIT_SUCCESS;
+}

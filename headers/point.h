@@ -13,25 +13,22 @@ typedef struct
 // create routine for memory
 Point* point_create(int x, int y, int colour, const char* str);
 
-// destroy rountine for memory
-void point_destroy(Point * point);
-
 // move current coordinate by amount
-void point_move(Point* point, int x, int y);
+int point_move(Point* point, int x, int y);
 
 // move to coordinate (x, y)
-void point_set(Point* point, int x, int y);
+int point_set(Point* point, int x, int y);
 
 // set string to be printed
-void point_set_str(Point* point, const char* str);
+int point_set_str(Point* point, const char* str);
 
 // set colour to be printed
-void point_set_colour(Point* point, int colour);
+int point_set_colour(Point* point, int colour);
 
 // draw to ncurses screen
-void point_refresh(Point* point);
+int point_refresh(Point* point);
 
 // create, refresh then destroy (drawn on screen)
-void point(int x, int y, int colour, const char* str);
+int point(int x, int y, int colour, const char* str);
 
 #endif // POINT_H_

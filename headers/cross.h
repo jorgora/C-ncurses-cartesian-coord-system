@@ -13,9 +13,6 @@ typedef struct
 // create routine for memory
 Cross* cross_create(int x, int y, int colour);
 
-// destroy routine for memory
-void cross_destroy(Cross* cross);
-
 // move current coordinate by amount
 void cross_move(Cross* cross, int x, int y);
 

@@ -13,9 +13,6 @@ typedef struct
 // create routine for memory
 Circle* circle_create(int x, int y, int radius, int colour, const char* str);
 
-// destroy routine for memory
-void circle_destroy(Circle* circle);
-
 //draw to ncurses screen
 void circle_refresh(Circle* circle);
 

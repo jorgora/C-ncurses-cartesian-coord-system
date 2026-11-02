@@ -15,12 +15,6 @@ Numberline* numberline_create(int x, int y, int length, int colour)
     return numberline;
 }
 
-//destroy routine in memory
-void numberline_destroy(Numberline* numberline)
-{
-    free(numberline);    
-}
-
 //draw to ncurses screen
 void numberline_refresh(Numberline* numberline)
 {
@@ -30,9 +24,7 @@ void numberline_refresh(Numberline* numberline)
     
     for(int i = numberline->x; i < (numberline->x + numberline->length + 1); i++)
     {
-        Point* point = point_create(numberline->x + i, numberline->y, numberline->colour, "0-");
-        point_refresh(point);
-        point_destroy(point);
+        point(numberline->x + i, numberline->y, numberline->colour, "0-");
         //counter++;
     }
 
@@ -42,9 +34,14 @@ void numberline_refresh(Numberline* numberline)
 // create, refresh then destroy, drawn on screen
 void numberline(int x, int y, int length, int colour)
 {
-    Numberline* numberline = numberline_create(x, y, length, colour);
+    // create pointer
+    Numberline *numberline = numberline_create(x, y, length, colour);
+
+    // draw to screen
     numberline_refresh(numberline);
-    numberline_destroy(numberline);
+
+    // destroy pointer
+    free(numberline);
     numberline = NULL;
 }
 

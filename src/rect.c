@@ -34,9 +34,7 @@ void rect_refresh(Rect* rect)
     {
         for(int j = rect->y; j < (rect->y + rect->height + 1); j++)
         {
-            Point* point = point_create(i, j, rect->colour, rect->str);
-            point_refresh(point);
-            point_destroy(point);
+            point(i, j, rect->colour, rect->str);
         }
     }
 
@@ -56,10 +54,15 @@ void rect_set_str(Rect* rect, const char* str)
 }
 
 // create, refresh then destroy (drawn on screen)
-void rect(int x, int y, int width, int height, int colour, const char* str)
+void rect(int x, int y, int width, int height, int colour, const char *str)
 {
-    Rect* rect = rect_create(x, y, width, height, colour, str);
+    // create pointer
+    Rect *rect = rect_create(x, y, width, height, colour, str);
+
+    // draw to screen
     rect_refresh(rect);
-    rect_destroy(rect);
+
+    // destroy pointer
+    free(rect);
     rect = NULL;
 }
