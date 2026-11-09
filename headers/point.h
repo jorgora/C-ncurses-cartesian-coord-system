@@ -7,7 +7,7 @@ typedef struct
     int x;
     int y;
     int colour;
-    const char* str;
+    char* str;
 } Point;
 
 // create routine for memory

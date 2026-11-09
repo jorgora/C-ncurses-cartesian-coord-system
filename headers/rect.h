@@ -16,15 +16,15 @@ typedef struct
 Rect* rect_create(int x, int y, int width, int height, int colour, const char* str);
 
 // draw to ncurses screen
-void rect_refresh(Rect* rect);
+int rect_refresh(Rect* rect);
 
 // set colour to be printed
-void rect_set_colour(Rect* rect, int colour);
+int rect_set_colour(Rect* rect, int colour);
 
 // set string to be printed
-void rect_set_str(Rect* rect, const char* str);
+int rect_set_str(Rect* rect, const char* str);
 
 // create, refresh then destroy (drawn to screen)
-void rect(int x, int y, int width, int height, int colour, const char* str);
+int rect(int x, int y, int width, int height, int colour, const char* str);
 
 #endif // RECT_H_

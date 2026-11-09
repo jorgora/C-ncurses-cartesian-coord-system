@@ -4,11 +4,25 @@
 #include "../headers/point.h"
 #include "../headers/rect.h"
 
-// create routine for memory
-Rect* rect_create(int x, int y, int width, int height, int colour, const char* str)
-{
-    Rect* rect = malloc(sizeof(Rect));
+#define FAIL -1
+#define SUCCESS 0
 
+// create routine for memory
+Rect *rect_create(int x, int y, int width, int height, int colour, const char *str)
+{
+   // handle invalid colour error
+    if (colour < 1) return NULL;
+
+    // handle NULL str error
+    if (str == NULL) return NULL;
+
+    // create pointer
+    Rect *rect = malloc(sizeof(Rect));
+
+    // handle malloc error
+    if (rect == NULL) return NULL;
+
+    // assign data
     rect->x = x;
     rect->y = y;
     rect->width = width;
@@ -16,18 +30,15 @@ Rect* rect_create(int x, int y, int width, int height, int colour, const char* s
     rect->colour = colour;
     rect->str = str;
 
+    //exit
     return rect;
 }
-
-// destroy routine for memory
-void rect_destroy(Rect* rect)
-{
-    free(rect);    
-}
-
 // draw to ncurses screen
-void rect_refresh(Rect* rect)
+int rect_refresh(Rect *rect)
 {
+    // handle NULL pointer error
+    if (rect == NULL) return FAIL;
+
     attron(COLOR_PAIR(rect->colour));
 
     for(int i = rect->x; i < (rect->x + rect->width + 1); i++)
@@ -39,30 +50,59 @@ void rect_refresh(Rect* rect)
     }
 
     attroff(COLOR_PAIR(rect->colour));
+
+    //exit
+    return SUCCESS;
 }
 
 // set colour to be printed
-void rect_set_colour(Rect* rect, int colour)
+int rect_set_colour(Rect* rect, int colour)
 {
+    // handle NULL pointer error
+    if (rect == NULL) return FAIL;
+
+    //assign data
     rect->colour = colour;
+
+    //exit
+    return SUCCESS;
 }
 
 // set string to be printed
-void rect_set_str(Rect* rect, const char* str)
+int rect_set_str(Rect *rect, const char *str)
 {
+    // handle NULL pointer error
+    if (rect == NULL) return FAIL;
+
+    // assign data
     rect->str = str;
+
+    //exit
+    return SUCCESS;
 }
 
 // create, refresh then destroy (drawn on screen)
-void rect(int x, int y, int width, int height, int colour, const char *str)
+int rect(int x, int y, int width, int height, int colour, const char *str)
 {
+   // handle invalid colour error
+    if (colour < 1) return FAIL;
+
+    // handle NULL str error
+    if (str == NULL) return FAIL;
+
     // create pointer
     Rect *rect = rect_create(x, y, width, height, colour, str);
+
+    // handle malloc error
+    if (rect == NULL) return FAIL;
 
     // draw to screen
     rect_refresh(rect);
 
-    // destroy pointer
+    // destroy memory
     free(rect);
     rect = NULL;
+
+    // exit
+    return SUCCESS;
 }
