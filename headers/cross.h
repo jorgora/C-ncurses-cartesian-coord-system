@@ -14,18 +14,18 @@ typedef struct
 Cross* cross_create(int x, int y, int colour);
 
 // move current coordinate by amount
-void cross_move(Cross* cross, int x, int y);
+int cross_move(Cross* cross, int x, int y);
 
 // move to coordinate (x, y)
-void cross_set(Cross* cross, int x, int y);
+int cross_set(Cross* cross, int x, int y);
 
 // draw to ncurses screen
-void cross_refresh(Cross* cross);
+int cross_refresh(Cross* cross);
 
 // set colour to be printed
-void cross_set_colour(Cross* cross, int colour);
+int cross_set_colour(Cross* cross, int colour);
 
 // this needs update. it doesn't use the point object
-void cross(int x, int y);
+int cross(int x, int y);
 
 #endif // CROSS_H_

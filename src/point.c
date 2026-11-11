@@ -4,6 +4,7 @@
 
 #include "../headers/point.h"
 
+// exit codes
 #define FAIL -1
 #define SUCCESS 0
 
@@ -81,25 +82,6 @@ int point_set(Point *point, int x, int y)
     return SUCCESS;
 }
 
-// draw on ncurses screen
-int point_refresh(Point* point)
-{
-    // handle NULL pointer error
-    if (point == NULL) return FAIL;
-
-    // get maximums from screen size
-    int max_y = 0;
-    int max_x = 0;
-    getmaxyx(stdscr, max_y, max_x);
-
-    // draw point
-    attron(COLOR_PAIR(point->colour));
-    mvprintw((max_y / 2) - point->y, (max_x / 2) + (point->x * 2), "%s", point->str);
-    attroff(COLOR_PAIR(point->colour));
-
-    // exit
-    return SUCCESS;
-}
 
 // set colour to be printed
 int point_set_colour(Point* point, int colour)
@@ -120,6 +102,9 @@ int point_set_str(Point* point, const char* str)
     // handle NULL pointer error
     if (point == NULL) return FAIL;
 
+    // handle NULL str error
+    if(str == NULL) return FAIL;
+
     // assign data
     point->str = strdup(str);
 
@@ -127,14 +112,34 @@ int point_set_str(Point* point, const char* str)
     return SUCCESS;
 }
 
+// draw on ncurses screen
+int point_refresh(Point* point)
+{
+    // handle NULL pointer error
+    if (point == NULL) return FAIL;
+
+    // get maximums from screen size
+    int max_y = 0;
+    int max_x = 0;
+    getmaxyx(stdscr, max_y, max_x);
+
+    // draw to screen
+    attron(COLOR_PAIR(point->colour));
+    mvprintw((max_y / 2) - point->y, (max_x / 2) + (point->x * 2), "%s", point->str);
+    attroff(COLOR_PAIR(point->colour));
+
+    // exit
+    return SUCCESS;
+}
+
 // create, refresh then destroy (drawn on the screen)
 int point(int x, int y, int colour, const char *str)
 {
     // handle invalid colour error
-     if (colour < 1) return FAIL + 5;
+     if (colour < 1) return FAIL;
 
     // handle NULL str error
-    if (str == NULL) return FAIL + 5;
+    if (str == NULL) return FAIL;
 
     // create pointer
     Point *point = point_create(x, y, colour, str);

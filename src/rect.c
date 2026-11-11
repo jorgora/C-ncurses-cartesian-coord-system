@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "../headers/point.h"
 #include "../headers/rect.h"
@@ -28,31 +29,10 @@ Rect *rect_create(int x, int y, int width, int height, int colour, const char *s
     rect->width = width;
     rect->height = height;
     rect->colour = colour;
-    rect->str = str;
+    rect->str = strdup(str);
 
     //exit
     return rect;
-}
-// draw to ncurses screen
-int rect_refresh(Rect *rect)
-{
-    // handle NULL pointer error
-    if (rect == NULL) return FAIL;
-
-    attron(COLOR_PAIR(rect->colour));
-
-    for(int i = rect->x; i < (rect->x + rect->width + 1); i++)
-    {
-        for(int j = rect->y; j < (rect->y + rect->height + 1); j++)
-        {
-            point(i, j, rect->colour, rect->str);
-        }
-    }
-
-    attroff(COLOR_PAIR(rect->colour));
-
-    //exit
-    return SUCCESS;
 }
 
 // set colour to be printed
@@ -74,8 +54,32 @@ int rect_set_str(Rect *rect, const char *str)
     // handle NULL pointer error
     if (rect == NULL) return FAIL;
 
+    // handle NULL str error
+    if(str == NULL) return FAIL;
+
     // assign data
-    rect->str = str;
+    rect->str = strdup(str);
+
+    //exit
+    return SUCCESS;
+}
+
+// draw to ncurses screen
+int rect_refresh(Rect *rect)
+{
+    // handle NULL pointer error
+    if (rect == NULL) return FAIL;
+
+    // draw to screen
+    attron(COLOR_PAIR(rect->colour));
+    for(int i = rect->x; i < (rect->x + rect->width + 1); i++)
+    {
+        for(int j = rect->y; j < (rect->y + rect->height + 1); j++)
+        {
+            point(i, j, rect->colour, rect->str);
+        }
+    }
+    attroff(COLOR_PAIR(rect->colour));
 
     //exit
     return SUCCESS;
@@ -99,7 +103,8 @@ int rect(int x, int y, int width, int height, int colour, const char *str)
     // draw to screen
     rect_refresh(rect);
 
-    // destroy memory
+    // free memory
+    free(rect->str);
     free(rect);
     rect = NULL;
 

@@ -5,32 +5,47 @@
 #include "../headers/point.h"
 #include "../headers/cross.h"
 
+// exit codes
+#define FAIL -1
+#define SUCCESS 0
+
 // create routine for memory
 Cross* cross_create(int x, int y, int colour)
 {
+    // handle invalid colour error
+    if (colour < 1) return NULL;
+
+    // create pointer
     Cross* cross = malloc(sizeof(Cross));
 
+    // handle malloc error
+    if (cross == NULL) return NULL;
+
+    //assign data
     cross->x = x;
     cross->y = y;
     cross->colour = colour;
 
+    // exit
     return cross;
 }
 
-// destroy rountine for memory
-void cross_destroy(Cross* cross)
-{
-    free(cross);
-}
-
 // move to coordinate (x, y)
-void cross_set(Cross* cross, int x, int y)
+int cross_set(Cross* cross, int x, int y)
 {
+    // handle NULL pointer error
+    if (cross == NULL) return FAIL;
+
+   // assign data 
     cross->x = x;
     cross->y = y;
+
+    //exit
+    return SUCCESS;
 }
 
-void cross(int x, int y)
+// create, refresh then destroy (drawn on the screen)
+int cross(int x, int y)
 {
     #define CROSS_HORIZ_STR "#"
     #define CROSS_CENTRE_STR "X"
@@ -82,5 +97,7 @@ void cross(int x, int y)
     }
 
     mvprintw((max_y / 2) - y, (max_x / 2) + (x*2), "0");
+
+    return SUCCESS;
 }
 
