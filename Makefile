@@ -15,11 +15,13 @@ INCLUDES = -Iheaders
 # list all .c files in src
 SRC = $(shell find src -name "*.c")
 
-# testing .c files
-TEST_SRC = $(wildcard tests/*.c)
-
 # for each .c file, create a .o object file
 OBJ = $(SRC:.c=.o)
+
+# testing .c files
+TEST_SRC = $(wildcard tests/*.c)
+TEST_OBJ = $(TEST_SRC:.c=)
+
 
 # name of executable
 EXEC = cartesian-c-ncurses
@@ -32,10 +34,13 @@ all: $(EXEC)
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
 
+test: $(TEST_OBJ)
+	@for t in $(TEST_OBJ); do ./$$t || exit 1; done
+
 # Test target: compiles src files (except main) and test files
-test: $(filter-out src/main.o, $(OBJ))
-	$(CC) $(CFLAGS) $(INCLUDES) $(filter-out src/main.o, $(OBJ)) $(TEST_SRC) -o test_runner $(LDFLAGS)
-	./test_runner
+# pattern rule
+tests/test_%: tests/test_%.c $(filter-out src/main.o, $(OBJ))
+	$(CC) $(CFLAGS) $(INCLUDES) $^ -lcmocka $(LDFLAGS) -o $@
 
 # Rule to compile .c files into .o object files
 %.o: %.c

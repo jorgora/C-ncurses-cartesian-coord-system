@@ -98,10 +98,14 @@ int func_refresh(Func* func)
     int max_y = 0;
     int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
+
+    // what is the minimum X (set to -100 to be well off screen) (consider changing)
+    #define NEGATIVE_X_MINIMUM  -100
     
-    // draw function
-    for(int i = -100; i < max_x; i++)
-    { 
+    // from defined minimum to screen maximum
+    for(int i = NEGATIVE_X_MINIMUM; i < max_x; i++)
+    {
+        // draw points
         point(i, floor(func->func(i)), func->colour, func->str);   
     }
 

@@ -18,8 +18,6 @@ Numberline* numberline_create(int x, int y, int length, int colour)
 //draw to ncurses screen
 void numberline_refresh(Numberline* numberline)
 {
-    attron(COLOR_PAIR(numberline->colour));
-
     //int counter = 0;
     
     for(int i = numberline->x; i < (numberline->x + numberline->length + 1); i++)
@@ -27,8 +25,6 @@ void numberline_refresh(Numberline* numberline)
         point(numberline->x + i, numberline->y, numberline->colour, "0-");
         //counter++;
     }
-
-    attroff(COLOR_PAIR(numberline->colour));
 }
 
 // create, refresh then destroy, drawn on screen

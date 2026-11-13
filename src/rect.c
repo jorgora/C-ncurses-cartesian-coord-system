@@ -70,18 +70,18 @@ int rect_refresh(Rect *rect)
     // handle NULL pointer error
     if (rect == NULL) return FAIL;
 
-    // draw to screen
-    attron(COLOR_PAIR(rect->colour));
+    // for rect width
     for(int i = rect->x; i < (rect->x + rect->width + 1); i++)
     {
+        // for rect height
         for(int j = rect->y; j < (rect->y + rect->height + 1); j++)
         {
+            // draw points
             point(i, j, rect->colour, rect->str);
         }
     }
-    attroff(COLOR_PAIR(rect->colour));
 
-    //exit
+    // exit
     return SUCCESS;
 }
 

@@ -43,7 +43,7 @@ static void test_rect_create_null_str_fail(void **state) {
     r = NULL;
 }
 
-/*
+
 int main(void)
 {
   const struct CMUnitTest tests[] = {
@@ -54,4 +54,4 @@ int main(void)
 
     return cmocka_run_group_tests(tests, NULL, NULL);
 }
-*/
+

@@ -36,23 +36,23 @@ Circle* circle_create(int x, int y, int radius, int colour, const char* str)
     return circle;
 }
 
-//draw to ncurses screen
+//draw to ncurses screen (NOT WORKING)
 int circle_refresh(Circle* circle)
 {
     // handle NULL pointer error
     if (circle == NULL) return FAIL;
 
-    // draw function
+    // for circle radius x
     for(int i = circle->x - circle->radius; i < circle->x + circle->radius; i++)
     {
+        // for circle radius y
         for(int j = circle->y - circle->radius; j < circle->y + circle->radius; j++)
         {
+            // if point within the circle
             if((circle->x + i <  (2 * M_PI * circle->radius)))
             {
-                Point* point = point_create(i, j, circle->colour, circle->str);
-                point_refresh(point);
-                free(point);
-                point = NULL;
+                // draw points
+                point(i, j, circle->colour, circle->str);
             }
         }
     }

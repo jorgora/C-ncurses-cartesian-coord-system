@@ -55,9 +55,11 @@ int cross(int x, int y)
     int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
 
-    //VERTICAL
+    // VERTICAL
+    // for each Y 
     for(size_t i = 0; i < (size_t)max_y; i++)
     {
+        // calculate cartesian Y grid number
         int num_to_print = abs((int)-i + (max_y/2));
         
         //if 10 or greater, move 1 to the left so matches up 
@@ -71,14 +73,17 @@ int cross(int x, int y)
         }
     }
 
-    //HORIZONTAL
+    // HORIZONTAL
+    // for each X
     for(int i = 0; i < max_x; i++)
     {
+        // calculate cartesian Y grid number
         int num_to_print = abs((int)-i + (max_x/2)) / 2;
 
-        
+        // if X is equal
         if(i % 2 == 0)
         {
+            // if grid number is less than 10
             if(num_to_print < 10)
             {
                 mvprintw((max_y / 2) - y, i, "%d", num_to_print);
@@ -98,6 +103,7 @@ int cross(int x, int y)
 
     mvprintw((max_y / 2) - y, (max_x / 2) + (x*2), "0");
 
+    // exit
     return SUCCESS;
 }
 

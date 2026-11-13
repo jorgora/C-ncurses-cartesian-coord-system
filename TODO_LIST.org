@@ -34,5 +34,4 @@ one is unused max_y var in func.c, this is fine for now.
 other is a cast from const char* str to int...this is more novel.
 I will investigate later if it becomes an issue / before v1.0
 * NEW
-* TODO point
-* TODO rect
+** TODO make a test file for more than just point

@@ -123,9 +123,13 @@ int point_refresh(Point* point)
     int max_x = 0;
     getmaxyx(stdscr, max_y, max_x);
 
-    // draw to screen
+    // turn on colour
     attron(COLOR_PAIR(point->colour));
+
+    // draw point on screen (translated to centre of screen for cartesian system)
     mvprintw((max_y / 2) - point->y, (max_x / 2) + (point->x * 2), "%s", point->str);
+
+    // turn off colour
     attroff(COLOR_PAIR(point->colour));
 
     // exit
