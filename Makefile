@@ -26,11 +26,10 @@ TEST_OBJ = $(TEST_SRC:.c=)
 # name of executable
 EXEC = cartesian-c-ncurses
 
-# Default target to build the project when 'make' is run with no arguments
-# This is the first target and will build the executable
+# default target to build project when 'make' is run with no args
 all: $(EXEC)
 
-# Rule to create the executable file from the object files
+# Rule to create executable file from object files
 $(EXEC): $(OBJ)
 	$(CC) $(OBJ) -o $(EXEC) $(LDFLAGS)
 
@@ -48,7 +47,7 @@ tests/test_%: tests/test_%.c $(filter-out src/main.o, $(OBJ))
 
 # clean: remove object and executable files
 clean:
-	rm -f $(OBJ) $(EXEC) test_runner
+	rm -f $(OBJ) $(TEST_OBJ) $(EXEC) 
 
 # Run the compiled program (after it's built)
 run: $(EXEC)
