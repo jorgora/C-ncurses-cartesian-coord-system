@@ -1,7 +1,6 @@
 #ifndef RECT_H_
 #define RECT_H_
 
-// struct definition
 typedef struct
 {
     int x;

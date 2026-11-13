@@ -1,7 +1,6 @@
 #ifndef POINT_H_
 #define POINT_H_
 
-// struct definition
 typedef struct
 {
     int x;

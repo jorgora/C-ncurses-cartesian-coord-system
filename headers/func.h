@@ -1,7 +1,6 @@
 #ifndef FUNC_H_
 #define FUNC_H_
 
-// struct definition
 typedef struct
 {
     double (*func) (double);

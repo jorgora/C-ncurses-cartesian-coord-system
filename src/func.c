@@ -6,6 +6,7 @@
 #include "../headers/func.h"
 #include "../headers/point.h"
 
+// exit codes
 #define FAIL -1
 #define SUCCESS 0
 

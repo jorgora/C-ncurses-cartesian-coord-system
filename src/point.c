@@ -11,7 +11,7 @@
 // create routine for memory
 Point *point_create(int x, int y, int colour, const char *str)
 {
-   // handle invalid colour error
+    // handle invalid colour error
     if (colour < 1) return NULL;
 
     // handle NULL str error
